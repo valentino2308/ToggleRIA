@@ -1,0 +1,34 @@
+<ng-template #myModalParam let-modal>        
+  <div class="modal-header alert alert-secondary">
+    <h5 style="color:rebeccapurple;"   class="modal-title" id="modal-basic-title">Tooggle - Paramétrage</h5>    
+  </div>
+  <div class="modal-body">
+    <div class="input-group mb-3">
+      <input type="text" style="border-color: rebeccapurple;" class="form-control" placeholder="Composant à ajouter" aria-label="Recipient's username" aria-describedby="button-addon2">
+      <div class="input-group-append">
+        <button class="btn btn-light  buttonPurple" type="button" id="button-addon2">Ajouter</button>
+      </div>
+    </div>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Clé</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let feature of featuresCategories">
+          <td>{{feature.key}}</td>
+          <td>{{feature.label}}</td>
+          <td><button type="button" class="btn btn-light  buttonPurple">Supprimer</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light  buttonPurple" (click)="modal.close('Save click')">Valider</button>
+    <button type="button" class="btn btn-light  buttonPurple" (click)="modal.dismiss('Cross click')">Annuler</button>
+  </div>
+</ng-template>

@@ -1,0 +1,17 @@
+<div>
+    <app-toogle-menu></app-toogle-menu>
+</div>
+<div class="container-fluid">
+    <div class="row flex-xl-nowrap">
+        <div class="col-md-3 col-xl-2 bd-sidebar leftSide">
+            <app-component-list></app-component-list>    
+        </div>
+        <main class="col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content">
+            <router-outlet></router-outlet>
+        </main>           
+        <div class="d-none d-xl-block col-xl-2 bd-toc rightSide" >
+            <p></p>
+            <p>Bienvenue dans l'application Toggle. Cette application permet de gérer les clés de débrayabilité de la solution GWF/filenet</p>
+        </div>
+    </div>
+</div>

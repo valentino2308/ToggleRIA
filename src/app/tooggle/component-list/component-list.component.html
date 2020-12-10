@@ -1,0 +1,7 @@
+<div class="list-group">
+    <button  appSelectedLine type="button" 
+            class="list-group-item list-group-item-action" 
+            *ngFor="let feature of featuresCategories" ><app-component-item [featureCategory]=feature.key></app-component-item>
+    </button>
+<div>
+

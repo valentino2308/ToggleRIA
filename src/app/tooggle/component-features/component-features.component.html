@@ -1,0 +1,48 @@
+
+<div class="alert alert-secondary" style="text-align: center;font-size: 25px;">
+  {{featureCategory.label}}
+</div>
+<table class="table table-striped table-bordered " style="  max-height: 400px;
+overflow: auto;
+display:inline-block;">
+  <thead>
+    <tr style="background-color: lightgrey;">
+      <th style="width: 45%;" scope="col">Clé</th>
+      <th style="width: 10%;" scope="col">Valeur</th>
+      <th style="width: 40%;" scope="col">Commentaires</th>
+      <th style="width: 10%;" scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr appSelectedLine *ngFor="let feature of featureCategory.features">
+      <td>{{feature.key}}</td>
+      <td style="text-align: center" *ngIf="feature.value">active</td>
+      <td style="text-align: center" *ngIf="!feature.value">inactive</td>
+      <td>{{feature.comment}}</td>
+      <td style="text-align: center"> <input [(ngModel)]="feature.selected" type="checkbox"></td>
+    </tr>
+  </tbody>
+  <p>Nombre de clé : {{featureCategory.features.length}}</p>
+
+</table>
+<div class="container-fluid">
+    <div class="row">
+      <app-component-modal-feature></app-component-modal-feature>
+      <div class="col-sm">
+        <button type="button" (click)="open()" class="btn btn-light btn-block buttonPurple">Ajouter</button>
+      </div>
+      <div class="col-sm">  
+        <button type="button" (click)="open()" class="btn btn-light btn-block buttonPurple">Modifier</button>
+      </div>
+      <div class="col-sm">  
+        <button type="button" class="btn btn-light btn-block buttonPurple">Supprimer</button>
+      </div>
+      <div class="col-sm">  
+        <button type="button" (click)="goProcess()" class="btn btn-light btn-block buttonPurple">Diffuser</button>
+      </div>
+      <div class="col-sm">  
+        <button type="button" (click)="goProcess()" class="btn btn-light btn-block buttonPurple">Comparer</button>
+      </div>
+  </div>
+</div>
+
