@@ -1,4 +1,4 @@
-import { Component, Input, OnInit,ViewChild,ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Feature } from 'src/app/model/Feature';
 import { FeatureCategory } from 'src/app/model/FeatureCategory';
 import { ComponentModalFeatureComponent } from '../component-modal-feature/component-modal-feature.component';
@@ -23,7 +23,7 @@ export class ComponentFeaturesComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.keyFeatureCategory = params['id'];
+      this.keyFeatureCategory = params.id;
       this.featureCategory = this.featuresService.getFeatureCategoryByKey(this.keyFeatureCategory);
     });
   }
@@ -32,7 +32,7 @@ export class ComponentFeaturesComponent implements OnInit {
   }
 
   goProcess(): void {
-    const link = ['process' , this.keyFeatureCategory ]
+    const link = ['process' , this.keyFeatureCategory ];
     this.router.navigate(link);
   }
 }
