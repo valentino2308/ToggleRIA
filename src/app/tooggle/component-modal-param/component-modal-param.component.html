@@ -1,6 +1,6 @@
-<ng-template #myModalParam let-modal>        
+<ng-template #myModalParam let-modal>
   <div class="modal-header alert alert-secondary">
-    <h5 style="color:rebeccapurple;"   class="modal-title" id="modal-basic-title">Tooggle - Paramétrage</h5>    
+    <h5 style="color:rebeccapurple;"   class="modal-title" id="modal-basic-title">Tooggle - Paramétrage</h5>
   </div>
   <div class="modal-body">
     <div class="input-group mb-3">
@@ -13,14 +13,12 @@
       <thead>
         <tr>
           <th scope="col">Id</th>
-          <th scope="col">Clé</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let feature of featuresCategories">
-          <td>{{feature.key}}</td>
-          <td>{{feature.label}}</td>
+        <tr *ngFor="let configuration of configurationToggle.listConfigurationWs">
+          <td>{{configuration.capacity}}</td>
           <td><button type="button" class="btn btn-light  buttonPurple">Supprimer</button></td>
         </tr>
       </tbody>

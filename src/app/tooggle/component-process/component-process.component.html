@@ -1,36 +1,38 @@
-<div class="alert alert-secondary" style="text-align: center;font-size: 25px;">
-  {{featureCategory.label}}
-</div>
-<table class="table table-striped table-bordered " style="  max-height: 400px;
-overflow: auto;
-display:inline-block;">
-  <thead>
-    <tr style="background-color: lightgrey;">
-      <th style="width: 45%;" scope="col">Serveur</th>
-      <th style="width: 10%;" scope="col">Banque(s)</th>
-      <th style="width: 10%;" scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr appSelectedLine *ngFor="let server of featureCategory.servers">
-      <td>{{server.server}}</td>
-      <td>{{server.bank}}</td>
-      <td style="text-align: center"> <input [(ngModel)]="server.selected" type="checkbox"></td>
-    </tr>
-  </tbody>
-  <p>Nombre de serveurs : {{featureCategory.servers.length}}</p>
+<div *ngIf="!loading">
+  <div class="alert alert-secondary" style="text-align: center;font-size: 25px;">
+    {{featureCategory.label}}
+  </div>
+  <table class="table table-striped table-bordered " style="  max-height: 400px;
+  overflow: auto;
+  display:inline-block;">
+    <thead>
+      <tr style="background-color: lightgrey;">
+        <th style="width: 45%;" scope="col">Serveur</th>
+        <th style="width: 10%;" scope="col">Banque(s)</th>
+        <th style="width: 10%;" scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr appSelectedLine *ngFor="let server of featureCategory.servers">
+        <td>{{server.server}}</td>
+        <td>{{server.bank}}</td>
+        <td style="text-align: center"> <input [(ngModel)]="server.selected" type="checkbox"></td>
+      </tr>
+    </tbody>
+    <p>Nombre de serveurs : {{featureCategory.servers.length}}</p>
 
-</table>
-<div class="container-fluid">
-    <div class="row">
-      <div class="col-sm">
-        <button type="button" class="btn btn-light btn-block buttonPurple">Diffuser</button>
+  </table>
+  <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm">
+          <button type="button" class="btn btn-light btn-block buttonPurple">Diffuser</button>
+        </div>
+        <div class="col-sm">
+          <button type="button" class="btn btn-light btn-block buttonPurple">Comparer</button>
+        </div>
+        <div class="col-sm">
+          <button type="button" (click)="goMain()" class="btn btn-light btn-block buttonPurple">Retour</button>
+        </div>
       </div>
-      <div class="col-sm">
-        <button type="button" class="btn btn-light btn-block buttonPurple">Comparer</button>
-      </div>
-      <div class="col-sm">
-        <button type="button" (click)="goMain()" class="btn btn-light btn-block buttonPurple">Retour</button>
-      </div>
-    </div>
+  </div>
 </div>

@@ -14,17 +14,26 @@ export class ComponentFeaturesComponent implements OnInit {
 
   keyFeatureCategory: string;
   @ViewChild(ComponentModalFeatureComponent, { static: true }) childReference: ComponentModalFeatureComponent;
-
   featureSelected: Feature;
   closeResult: string;
   featureCategory: FeatureCategory;
-
-  constructor(private featuresService: FeaturesServiceService, private route: ActivatedRoute,  private router: Router) { }
-
+  loading = true;
+  constructor(private featuresService: FeaturesServiceService, private route: ActivatedRoute,  private router: Router) {
+   }
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.keyFeatureCategory = params.id;
-      this.featureCategory = this.featuresService.getFeatureCategoryByKey(this.keyFeatureCategory);
+      this.featuresService.getCapacityValue(this.keyFeatureCategory).subscribe(
+        response => {
+          this.featureCategory = {
+            key: this.keyFeatureCategory,
+            label: this.keyFeatureCategory,
+            features: response.listFeatures,
+            servers: response.listServers
+          };
+          this.loading = false;
+        }
+      );
     });
   }
   open(): void  {

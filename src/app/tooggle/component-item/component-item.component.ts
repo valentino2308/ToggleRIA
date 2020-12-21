@@ -10,18 +10,13 @@ import { Router } from '@angular/router';
 })
 export class ComponentItemComponent implements OnInit {
 
-  @Input() featureCategory : String;
-  
-  feature : FeatureCategory;
-
-  constructor(private featuresService : FeaturesServiceService,
-    private router: Router  ) { }    
+  @Input() featureCategory: string;
+  constructor(private router: Router  ) {}
 
   ngOnInit(): void {
-    this.feature = this.featuresService.getFeatureCategoryByKey(this.featureCategory);
   }
-  getCurrentCategory() {
-    const link = ['main' , this.feature.key ]
+  getCurrentCategory(): void {
+    const link = ['main' , this.featureCategory];
     this.router.navigate(link);
   }
 }

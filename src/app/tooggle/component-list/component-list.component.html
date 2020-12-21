@@ -1,7 +1,11 @@
 <div class="list-group">
-    <button  appSelectedLine type="button" 
-            class="list-group-item list-group-item-action" 
-            *ngFor="let feature of featuresCategories" ><app-component-item [featureCategory]=feature.key></app-component-item>
-    </button>
+
+    <div *ngIf="!loading">
+      <button  appSelectedLine type="button"
+              class="list-group-item list-group-item-action"
+              *ngFor="let configuration of configurationToggle.listConfigurationWs" >
+              <app-component-item [featureCategory]=configuration.capacity></app-component-item>
+      </button>
+  </div>
 <div>
 

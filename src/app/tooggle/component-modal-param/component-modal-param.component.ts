@@ -1,6 +1,6 @@
-import { Component, OnInit,ViewChild,ElementRef,Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import { FeatureCategory } from 'src/app/model/FeatureCategory';
+import { ConfigurationToggle } from 'src/app/model/api/Configuration';
 import { FeaturesServiceService } from '../../services/features-service.service'
 
 @Component({
@@ -11,25 +11,23 @@ import { FeaturesServiceService } from '../../services/features-service.service'
 export class ComponentModalParamComponent implements OnInit {
 
   @ViewChild('myModalParam', { static: false }) mymodalFeature: ElementRef;
-  featuresCategories: FeatureCategory[];
   closeResult: string;
+  configurationToggle: ConfigurationToggle;
 
-
+  constructor(private modalService: NgbModal, private featuresService: FeaturesServiceService) {}
   ngOnInit(): void {
-      this.featuresCategories = this.featuresService.getAllData();
+    this.featuresService.getCapacity().subscribe( response => {
+      this.configurationToggle = response;
+    });
   }
-
-  constructor(private modalService: NgbModal, private featuresService : FeaturesServiceService) {}
-
-  open() {
+  open(): void {
     this.modalService.open(this.mymodalFeature, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
   }
-
-  getDismissReason(reason: any) : string {
+  getDismissReason(reason: any): string {
       if (reason === ModalDismissReasons.ESC) {
         return 'by pressing ESC';
       } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {

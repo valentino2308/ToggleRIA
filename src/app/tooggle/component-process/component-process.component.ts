@@ -12,18 +12,26 @@ export class ComponentProcessComponent implements OnInit {
 
   keyFeatureCategory: string;
   featureCategory: FeatureCategory;
-
+  loading = true;
   constructor( private featuresService: FeaturesServiceService,
                private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.keyFeatureCategory = params.id;
-      this.featureCategory = this.featuresService.getFeatureCategoryByKey(this.keyFeatureCategory);
-
+      this.featuresService.getCapacityValue(this.keyFeatureCategory).subscribe(
+        response => {
+          this.featureCategory = {
+            key: this.keyFeatureCategory,
+            label: this.keyFeatureCategory,
+            features: response.listFeatures,
+            servers: response.listServers
+          };
+          this.loading = false;
+        }
+      );
     });
   }
-
   goMain(): void {
     const link = ['main' , this.keyFeatureCategory];
     this.router.navigate(link);
