@@ -14,7 +14,7 @@ import { SelectedLineDirective } from './directives/selected-line.directive';
 import { ComponentProcessComponent } from './tooggle/component-process/component-process.component';
 import { ROUTING } from './app.routing';
 import { ComponentEmptyComponent } from './tooggle/component-empty/component-empty.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,6 +33,7 @@ import { ComponentEmptyComponent } from './tooggle/component-empty/component-emp
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     NgbModule,
     ROUTING
   ],

@@ -11,20 +11,19 @@ import { FeaturesServiceService } from '../../services/features-service.service'
 })
 export class ToogleAppComponent implements OnInit {
 
-  featuresCategories : FeatureCategory[];
-  featureCatgorySelected : String;
+  featuresCategories: FeatureCategory[];
+  featureCatgorySelected: string;
 
-  constructor(private featuresService : FeaturesServiceService)  { }
+  constructor(private featuresService: FeaturesServiceService)  { }
 
   ngOnInit(): void {
-
-    
-    this.featuresCategories = this.featuresService.getData();
-    if (this.featuresCategories.length > 0)
+    this.featuresCategories = this.featuresService.getAllData();
+    if (this.featuresCategories.length > 0) {
       this.featureCatgorySelected = this.featuresCategories[0].key;
+    }
   }
 
-  selectFeatureCategory(selectedFeatureCategory : String) : void {
+  selectFeatureCategory(selectedFeatureCategory: string): void {
     this.featureCatgorySelected = selectedFeatureCategory;
   }
 

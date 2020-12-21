@@ -1,17 +1,17 @@
-<ng-template #mymodalFeature let-modal>        
+<ng-template #mymodalFeature let-modal>
   <div class="modal-header alert alert-secondary">
-    <h5 style="color:rebeccapurple;"   class="modal-title" id="modal-basic-title">Tooggle - Feature</h5>    
+    <h5 style="color:rebeccapurple;"   class="modal-title" id="modal-basic-title">Tooggle - Feature</h5>
   </div>
-  <div class="modal-body">      
+  <div class="modal-body">
     <form>
       <div  class="input-group mb-3">
         <div class="input-group-prepend">
           <span style="border-color: rebeccapurple;" class="input-group-text" id="">Clé</span>
         </div>
-        <input style="border-color: rebeccapurple;" type="text" class="form-control" aria-label="Text input with checkbox">
+        <input ([value])=feature.featureName style="border-color: rebeccapurple;" type="text" class="form-control" aria-label="Text input with checkbox">
         <div class="input-group-prepend">
           <div style="border-color: rebeccapurple;" class="input-group-text">
-            <input type="checkbox" aria-label="Checkbox for following text input">
+            <input ([value])=feature.active type="checkbox" aria-label="Checkbox for following text input">
           </div>
         </div>
       </div>
@@ -19,12 +19,12 @@
         <div class="input-group-prepend">
           <span style="border-color: rebeccapurple;"class="input-group-text" id="">Commentaires</span>
         </div>
-        <input style="border-color: rebeccapurple;" type="text" class="form-control">
+        <input ([value])=feature.comment style="border-color: rebeccapurple;" type="text" class="form-control">
       </div>
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-light buttonPurple" (click)="modal.close('Save click')">Valider</button>
-    <button type="button" class="btn btn-light buttonPurple" (click)="modal.dismiss('Cross click')">Annuler</button>
+    <button type="button" class="btn btn-light buttonPurple" (click)="getDismissReason($event)">Valider</button>
+    <button type="button" class="btn btn-light buttonPurple" (click)="getDismissReason($event)">Annuler</button>
   </div>
 </ng-template>

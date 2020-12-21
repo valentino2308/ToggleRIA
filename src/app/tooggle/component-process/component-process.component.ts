@@ -10,22 +10,22 @@ import { FeaturesServiceService } from 'src/app/services/features-service.servic
 })
 export class ComponentProcessComponent implements OnInit {
 
-  keyFeatureCategory : String;
-  featureCategory : FeatureCategory;
-  
-  constructor( private featuresService : FeaturesServiceService,
-    private route: ActivatedRoute, private router: Router) { }
+  keyFeatureCategory: string;
+  featureCategory: FeatureCategory;
 
-  ngOnInit(): void {0
+  constructor( private featuresService: FeaturesServiceService,
+               private route: ActivatedRoute, private router: Router) { }
+
+  ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.keyFeatureCategory = params['id'];
+      this.keyFeatureCategory = params.id;
       this.featureCategory = this.featuresService.getFeatureCategoryByKey(this.keyFeatureCategory);
- 
+
     });
   }
-  
-  goMain() : void {
-    const link = ['main' , this.keyFeatureCategory ]
+
+  goMain(): void {
+    const link = ['main' , this.keyFeatureCategory];
     this.router.navigate(link);
   }
 }

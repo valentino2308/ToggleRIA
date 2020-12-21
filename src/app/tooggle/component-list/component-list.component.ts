@@ -8,12 +8,12 @@ import { FeaturesServiceService } from '../../services/features-service.service'
   styleUrls: ['./component-list.component.css']
 })
 export class ComponentListComponent implements OnInit {
-   
-  featuresCategories : FeatureCategory[];
- 
-  constructor(private featuresService : FeaturesServiceService ) { }
- 
+
+  featuresCategories: FeatureCategory[];
+
+  constructor(private featuresService: FeaturesServiceService ) { }
+
   ngOnInit(): void {
-      this.featuresCategories = this.featuresService.getData();
+      this.featuresCategories = this.featuresService.getAllData();
   }
 }

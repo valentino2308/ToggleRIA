@@ -11,12 +11,12 @@ import { FeaturesServiceService } from '../../services/features-service.service'
 export class ComponentModalParamComponent implements OnInit {
 
   @ViewChild('myModalParam', { static: false }) mymodalFeature: ElementRef;
-  featuresCategories : FeatureCategory[];
+  featuresCategories: FeatureCategory[];
   closeResult: string;
 
-  
+
   ngOnInit(): void {
-      this.featuresCategories = this.featuresService.getData();
+      this.featuresCategories = this.featuresService.getAllData();
   }
 
   constructor(private modalService: NgbModal, private featuresService : FeaturesServiceService) {}
@@ -30,11 +30,11 @@ export class ComponentModalParamComponent implements OnInit {
   }
 
   getDismissReason(reason: any) : string {
-      if (reason === ModalDismissReasons.ESC) {  
+      if (reason === ModalDismissReasons.ESC) {
         return 'by pressing ESC';
-      } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {  
-        return 'by clicking on a backdrop';  
-      } else {  
+      } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+        return 'by clicking on a backdrop';
+      } else {
         return  `with: ${reason}`;
       }
     }

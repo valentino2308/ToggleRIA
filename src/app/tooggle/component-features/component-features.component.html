@@ -15,9 +15,9 @@ display:inline-block;">
   </thead>
   <tbody>
     <tr appSelectedLine *ngFor="let feature of featureCategory.features">
-      <td>{{feature.key}}</td>
-      <td style="text-align: center" *ngIf="feature.value">active</td>
-      <td style="text-align: center" *ngIf="!feature.value">inactive</td>
+      <td>{{feature.featureName}}</td>
+      <td style="text-align: center" *ngIf="feature.active">active</td>
+      <td style="text-align: center" *ngIf="!feature.active">inactive</td>
       <td>{{feature.comment}}</td>
       <td style="text-align: center"> <input [(ngModel)]="feature.selected" type="checkbox"></td>
     </tr>
@@ -31,16 +31,16 @@ display:inline-block;">
       <div class="col-sm">
         <button type="button" (click)="open()" class="btn btn-light btn-block buttonPurple">Ajouter</button>
       </div>
-      <div class="col-sm">  
+      <div class="col-sm">
         <button type="button" (click)="open()" class="btn btn-light btn-block buttonPurple">Modifier</button>
       </div>
-      <div class="col-sm">  
+      <div class="col-sm">
         <button type="button" class="btn btn-light btn-block buttonPurple">Supprimer</button>
       </div>
-      <div class="col-sm">  
+      <div class="col-sm">
         <button type="button" (click)="goProcess()" class="btn btn-light btn-block buttonPurple">Diffuser</button>
       </div>
-      <div class="col-sm">  
+      <div class="col-sm">
         <button type="button" (click)="goProcess()" class="btn btn-light btn-block buttonPurple">Comparer</button>
       </div>
   </div>

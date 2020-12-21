@@ -1,69 +1,59 @@
+import { FeatureCategory } from './../model/FeatureCategory';
+import { Capacity } from './../model/api/Capacity';
+import { ConfigurationToggle } from './../model/api/Configuration';
 import { getLocaleDateFormat } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Feature } from '../model/Feature';
-import { FeatureCategory } from '../model/FeatureCategory';
 import { Server } from '../model/Server';
+import { features } from 'process';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FeaturesServiceService {
 
-  featuresCategories: FeatureCategory[];
+  featuresCategories: FeatureCategory[] = [];
 
 
-  constructor() {
+  constructor(private http: HttpClient) {}
 
-    const featuresComposants: Feature[] = [
-      new Feature('KEY10', true, 'Comment 10', false),
-      new Feature('KEY1', true, 'Comment 1', false),
-      new Feature('KEY2', true, 'Comment 2', false),
-      new Feature('KEY21', true, 'Comment 21', false),
-      new Feature('KEY22', true, 'Comment 22', false),
-      new Feature('KEY23', true, 'Comment 23', false),
-      new Feature('KEY24', true, 'Comment 24', false),
-      new Feature('KEY25', true, 'Comment 25', false),
-      new Feature('KEY26', true, 'Comment 26', false),
-      new Feature('KEY27', true, 'Comment 27', false),
-      new Feature('KEY28', true, 'Comment 28', false),
-      new Feature('KEY29', true, 'Comment 29', false),
-      new Feature('KEY30', true, 'Comment 30', false),
-      new Feature('KEY31', true, 'Comment 31', false),
-      new Feature('KEY32', true, 'Comment 32', false),
-      new Feature('KEY33', true, 'Comment 33', false),
-      new Feature('KEY34', true, 'Comment 34', false),
-      new Feature('KEY35', true, 'Comment 35', false)
-      ];
 
-    const featuresSoclePrivee: Feature[] = [
-        new Feature('KEY3', false, 'Comment 3', false),
-        new Feature('KEY33', false, 'Comment 33', false),
-        new Feature('KEY4', true, 'Comment 4', false)
-      ];
+  getAllData(): FeatureCategory[] {
+    const urlConfigToggle  = 'http://localhost:8080/toggleweb/ws/toggle/configuration';
+    const urlCapacityToggle  = 'http://localhost:8080/toggleweb/ws/toggle/features';
 
-    const serversSoclePrivee: Server[] = [
-        new Server('IBGWFR34', '038', false),
-        new Server('IBGWFR35', '068', false),
-        new Server('IBGWFR36', '078', false),
-        new Server('IBGWFR37', '002', false),
-      ];
 
-    const serversSocleComposant: Server[] = [
-        new Server('IBGWFR38', '038', false),
-        new Server('IBGWFR39', '068', false),
-        new Server('IBGWFR40', '078', false),
-        new Server('IBGWFR42', '002', false),
-      ];
+    this.http.get<ConfigurationToggle>(urlConfigToggle).subscribe(
+      responseConfiguration => {
+        responseConfiguration.listConfigurationWs.forEach(capacityName => {
+          console.log(urlCapacityToggle + '/' + capacityName.capacity);
+          this.http.get<Capacity>(urlCapacityToggle + '/' + capacityName.capacity).subscribe(
+            responseCapacities => {
+              this.featuresCategories.push({
+                key: capacityName.capacity,
+                label: capacityName.capacity.toUpperCase(),
+                features: responseCapacities.listFeatures,
+                servers: responseCapacities.listServers
+              });
+              console.log(this.featuresCategories);
 
-    this.featuresCategories = [
-      new FeatureCategory('1' , 'Socle Composant', featuresComposants, serversSocleComposant),
-      new FeatureCategory('2', 'Socle privée', featuresSoclePrivee, serversSoclePrivee)
-      ];
+            },
+            error => {
+              console.log('Passage en mock data');
+            }
+          );
+        });
+        return this.featuresCategories;
+      },
+      error => {
+        console.log('Passage en mock data');
+      }
+    );
+    console.log(this.featuresCategories);
 
-   }
-
-   getFeatureCategoryByKey(key: any): FeatureCategory {
-
+  }
+  getFeatureCategoryByKey(key: any): FeatureCategory {
       let featureCategoryFind: FeatureCategory;
       if (key != null && !(key.length === 0)){
         this.featuresCategories.forEach(element => {
@@ -73,11 +63,14 @@ export class FeaturesServiceService {
         });
       }
       return featureCategoryFind;
-   }
-
-   getData(): any {
-     return this.featuresCategories;
   }
 
 
+  addFeatures(capacity: string, feature: Feature): any{
+    const link = 'http://localhost:8080/toggleweb/ws/toggle/features/' + capacity + '/add';
+    const body = { featureName: feature.featureName,
+                    active: feature.active,
+                    comment: feature.comment};
+    this.http.post<any>(link, body);
+  }
 }

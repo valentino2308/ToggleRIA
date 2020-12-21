@@ -30,7 +30,6 @@ export class ComponentFeaturesComponent implements OnInit {
   open(): void  {
     this.childReference.open();
   }
-
   goProcess(): void {
     const link = ['process' , this.keyFeatureCategory ];
     this.router.navigate(link);

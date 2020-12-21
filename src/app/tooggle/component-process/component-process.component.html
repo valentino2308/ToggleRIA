@@ -13,8 +13,8 @@ display:inline-block;">
   </thead>
   <tbody>
     <tr appSelectedLine *ngFor="let server of featureCategory.servers">
-      <td>{{server.name}}</td>
-      <td>{{server.banks}}</td>
+      <td>{{server.server}}</td>
+      <td>{{server.bank}}</td>
       <td style="text-align: center"> <input [(ngModel)]="server.selected" type="checkbox"></td>
     </tr>
   </tbody>

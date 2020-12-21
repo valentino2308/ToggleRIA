@@ -1,12 +1,12 @@
 export class Server{
-    name : String;
-    banks : String;
-    selected : boolean;
+    server: string;
+    bank: string;
+    selected: boolean;
 
-    constructor(name : String, banks : String, selected : boolean) {
-        this.name  = name;
-        this.banks = banks;
+    constructor(server: string, bank: string, selected: boolean) {
+        this.server  = server;
+        this.bank = bank;
         this.selected = selected;
-    }    
+    }
 
 }
