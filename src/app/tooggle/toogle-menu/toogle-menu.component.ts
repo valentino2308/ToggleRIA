@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ComponentModalParamComponent } from '../component-modal-param/component-modal-param.component';
-import { FeatureCategory } from 'src/app/model/FeatureCategory';
 
 
 @Component({

@@ -26,8 +26,11 @@ export class ComponentModalFeatureComponent implements OnInit {
     console.log('on est ici');
     this.modalService.open(this.mymodalFeature, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
+      console.log('result' + result);
+
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+      console.log('result' + reason);
     });
   }
   getDismissReason(reason: any): string {

@@ -29,12 +29,11 @@
   </table>
   <div class="container-fluid">
       <div class="row">
-        <app-component-modal-feature></app-component-modal-feature>
         <div class="col-sm">
           <button type="button" (click)="open()" class="btn btn-light btn-block buttonPurple">Ajouter</button>
         </div>
         <div class="col-sm">
-          <button type="button" (click)="open()" class="btn btn-light btn-block buttonPurple">Modifier</button>
+          <button type="button" (click)="openModif()" class="btn btn-light btn-block buttonPurple">Modifier</button>
         </div>
         <div class="col-sm">
           <button type="button" class="btn btn-light btn-block buttonPurple">Supprimer</button>
@@ -48,3 +47,6 @@
     </div>
   </div>
 </div>
+
+<app-component-modal-feature></app-component-modal-feature>
+

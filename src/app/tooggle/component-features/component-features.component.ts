@@ -39,6 +39,15 @@ export class ComponentFeaturesComponent implements OnInit {
   open(): void  {
     this.childReference.open();
   }
+
+  openModif(): void  {
+    this.featureCategory.features.forEach( element => {
+        if (element.selected){
+          this.childReference.openModif(element);
+        }
+    });
+  }
+
   goProcess(): void {
     const link = ['process' , this.keyFeatureCategory ];
     this.router.navigate(link);
