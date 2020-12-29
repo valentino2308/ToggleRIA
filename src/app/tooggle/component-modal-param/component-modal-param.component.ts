@@ -16,7 +16,8 @@ export class ComponentModalParamComponent implements OnInit {
 
   constructor(private modalService: NgbModal, private featuresService: FeaturesServiceService) {}
   ngOnInit(): void {
-    this.featuresService.getCapacity().subscribe( response => {
+    this.featuresService.getCapacity().subscribe(response =>{
+      console.log(response);
       this.configurationToggle = response;
     });
   }

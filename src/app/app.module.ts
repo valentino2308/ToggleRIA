@@ -9,7 +9,6 @@ import { ToogleMenuComponent } from './tooggle/toogle-menu/toogle-menu.component
 import { FormsModule } from '@angular/forms';
 import { ComponentModalParamComponent } from './tooggle/component-modal-param/component-modal-param.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { ComponentModalFeatureComponent } from './tooggle/component-modal-feature/component-modal-feature.component';
 import { SelectedLineDirective } from './directives/selected-line.directive';
 import { ComponentProcessComponent } from './tooggle/component-process/component-process.component';
 import { ROUTING } from './app.routing';
@@ -25,7 +24,6 @@ import { HttpClientModule } from '@angular/common/http';
     ComponentFeaturesComponent,
     ToogleMenuComponent,
     ComponentModalParamComponent,
-    ComponentModalFeatureComponent,
     SelectedLineDirective,
     ComponentProcessComponent,
     ComponentEmptyComponent
@@ -35,6 +33,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule,
     NgbModule,
+    FormsModule,
     ROUTING
   ],
   providers: [],

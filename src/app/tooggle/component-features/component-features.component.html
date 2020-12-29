@@ -1,9 +1,14 @@
-
-
 <div *ngIf="!loading">
   <div class="alert alert-secondary" style="text-align: center;font-size: 25px;">
-    {{featureCategory.label}}
+      {{featureCategory.label}}
   </div>
+</div>
+
+<div *ngIf="errorDisplay" style="text-align: center" class="alert alert-danger" role="alert">
+  {{errorMessage}}
+</div>
+
+<div *ngIf="!loading && !addUpdateDisplay">
   <table class="table table-striped table-bordered " style="  max-height: 400px;
   overflow: auto;
   display:inline-block;">
@@ -25,28 +30,57 @@
       </tr>
     </tbody>
     <p>Nombre de clé : {{featureCategory.features.length}}</p>
-
   </table>
   <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm">
-          <button type="button" (click)="open()" class="btn btn-light btn-block buttonPurple">Ajouter</button>
-        </div>
-        <div class="col-sm">
-          <button type="button" (click)="openModif()" class="btn btn-light btn-block buttonPurple">Modifier</button>
-        </div>
-        <div class="col-sm">
-          <button type="button" class="btn btn-light btn-block buttonPurple">Supprimer</button>
-        </div>
-        <div class="col-sm">
-          <button type="button" (click)="goProcess()" class="btn btn-light btn-block buttonPurple">Diffuser</button>
-        </div>
-        <div class="col-sm">
-          <button type="button" (click)="goProcess()" class="btn btn-light btn-block buttonPurple">Comparer</button>
-        </div>
+    <div class="row">
+      <div class="col-sm">
+        <button type="button" (click)="open()" class="btn btn-light btn-block buttonPurple">Ajouter</button>
+      </div>
+      <div class="col-sm">
+        <button type="button" (click)="openModif()" class="btn btn-light btn-block buttonPurple">Modifier</button>
+      </div>
+      <div class="col-sm">
+        <button type="button" (click)="openDuplicate()" class="btn btn-light btn-block buttonPurple">Dupliquer</button>
+      </div>
+      <div class="col-sm">
+        <button type="button" (click)="deleteFeatures()" class="btn btn-light btn-block buttonPurple">Supprimer</button>
+      </div>
+      <div class="col-sm">
+        <button type="button" (click)="goProcess()" class="btn btn-light btn-block buttonPurple">Diffuser</button>
+      </div>
+      <div class="col-sm">
+        <button type="button" (click)="goProcess()" class="btn btn-light btn-block buttonPurple">Comparer</button>
+      </div>
     </div>
   </div>
 </div>
 
-<app-component-modal-feature></app-component-modal-feature>
+<div *ngIf="addUpdateDisplay && !loading">
+  <form>
+      <div  class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span style="border-color: rebeccapurple;" class="input-group-text" id="">Clé</span>
+        </div>
+        <input [ngModelOptions]="{standalone: true}" [(ngModel)]=featureName style="border-color: rebeccapurple;" type="text" class="form-control" aria-label="Text input with checkbox">
+        <div class="input-group-prepend">
+          <div style="border-color: rebeccapurple;" class="input-group-text">
+            <input [ngModelOptions]="{standalone: true}" [(ngModel)]=active type="checkbox" aria-label="Checkbox for following text input">
+          </div>
+        </div>
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span style="border-color: rebeccapurple;"class="input-group-text" id="">Commentaires</span>
+        </div>
+        <input [ngModelOptions]="{standalone: true}" [(ngModel)]=comment style="border-color: rebeccapurple;" type="text" class="form-control">
+      </div>
+    </form>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light buttonPurple" (click)="addOrUpdateFeature()" >Valider</button>
+      <button type="button" class="btn btn-light buttonPurple" (click)="cancelFeature()">Annuler</button>
+    </div>
+</div>
+
+
+
 
